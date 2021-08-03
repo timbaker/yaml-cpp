@@ -45,6 +45,8 @@ option(APPLE_UNIVERSAL_BIN "Apple: Build universal binary" OFF)
 option(MSVC_SHARED_RT "MSVC: Build with shared runtime libs (/MD)" ON)
 option(MSVC_STHREADED_RT "MSVC: Build with single-threaded static runtime libs (/ML until VS .NET 2003)" OFF)
 
+find_package(Boost 1.46.0 REQUIRED)
+find_package(boost_nowide REQUIRED)
 ###
 ### Sources, headers, directories and libs
 ###
@@ -259,6 +261,8 @@ set(_INSTALL_DESTINATIONS
 ### Library
 ###
 add_library(yaml-cpp ${library_sources})
+
+target_link_libraries(yaml-cpp Boost::nowide)
 
 if (NOT CMAKE_VERSION VERSION_LESS 2.8.12)
     target_include_directories(yaml-cpp

@@ -1,6 +1,6 @@
 #include "yaml-cpp/node/parse.h"
 
-#include <fstream>
+#include <boost/nowide/fstream.hpp>
 #include <sstream>
 
 #include "yaml-cpp/node/node.h"
@@ -30,7 +30,7 @@ Node Load(std::istream& input) {
 }
 
 Node LoadFile(const std::string& filename) {
-  std::ifstream fin(filename.c_str());
+  boost::nowide::ifstream fin(filename.c_str());
   if (!fin) {
     throw BadFile();
   }
@@ -63,7 +63,7 @@ std::vector<Node> LoadAll(std::istream& input) {
 }
 
 std::vector<Node> LoadAllFromFile(const std::string& filename) {
-  std::ifstream fin(filename.c_str());
+  boost::nowide::ifstream fin(filename.c_str());
   if (!fin) {
     throw BadFile();
   }
